@@ -1,0 +1,25 @@
+services:
+  - type: web
+    name: Uncensorify Bot
+    runtime: python
+    region: singapore
+    branch: master
+    rootDir: .
+    buildCommand: pip install -r requirements.txt
+    startCommand: gunicorn web.app:app & python3 -m worker
+    autoDeploy: false
+
+    envVars:
+      - key: api_id
+        sync: false
+
+      - key: api_hash
+        sync: false
+
+      - key: bot_token
+        sync: false
+
+      - key: bot_username
+        sync: false
+
+    plan: free
